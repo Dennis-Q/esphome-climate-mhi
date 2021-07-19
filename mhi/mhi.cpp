@@ -200,127 +200,10 @@ namespace esphome {
                     break;
             }
 
-            ESP_LOGD(TAG, "Finished da shizzel");
+            ESP_LOGD(TAG, "Finish it");
             
             this->publish_state();
             return true;
-
-                // Useful for reverting status back to home assistant based on input:
-                    // this->mode
-                    // this->target_temperature
-                    // this->swing_mode
-                    // this->fan_mode
-                    // climate::CLIMATE_MODE_OFF:
-                    // climate::CLIMATE_MODE_AUTO:
-                    // climate::CLIMATE_MODE_COOL:
-                    // climate::CLIMATE_MODE_HEAT:
-                    // climate::CLIMATE_MODE_FAN_ONLY:
-                    // climate::CLIMATE_MODE_DRY:
-
-                    // climate::CLIMATE_SWING_BOTH <= beide op auto
-                    // climate::CLIMATE_SWING_HORIZONTAL <= auto
-                    // climate::CLIMATE_SWING_VERTICAL <= auto
-                    // climate::CLIMATE_SWING_OFF
-
-                    // climate::CLIMATE_FAN_LOW
-                    // climate::CLIMATE_FAN_MEDIUM
-                    // climate::CLIMATE_FAN_HIGH
-                    // climate::CLIMATE_FAN_MIDDLE
-                    // climate::CLIMATE_FAN_FOCUS
-                    // climate::CLIMATE_FAN_DIFFUSE
-                    // climate::CLIMATE_FAN_AUTO
-
-
-                    // enum ClimateMode : uint8_t {
-                    //   /// The climate device is off (not in auto, heat or cool mode)
-                    //   CLIMATE_MODE_OFF = 0,
-                    //   /// The climate device is set to automatically change the heating/cooling cycle
-                    //   CLIMATE_MODE_AUTO = 1,
-                    //   /// The climate device is manually set to cool mode (not in auto mode!)
-                    //   CLIMATE_MODE_COOL = 2,
-                    //   /// The climate device is manually set to heat mode (not in auto mode!)
-                    //   CLIMATE_MODE_HEAT = 3,
-                    //   /// The climate device is manually set to fan only mode
-                    //   CLIMATE_MODE_FAN_ONLY = 4,
-                    //   /// The climate device is manually set to dry mode
-                    //   CLIMATE_MODE_DRY = 5,
-                    // };
-
-                    // /// Enum for the current action of the climate device. Values match those of ClimateMode.
-                    // enum ClimateAction : uint8_t {
-                    //   /// The climate device is off (inactive or no power)
-                    //   CLIMATE_ACTION_OFF = 0,
-                    //   /// The climate device is actively cooling (usually in cool or auto mode)
-                    //   CLIMATE_ACTION_COOLING = 2,
-                    //   /// The climate device is actively heating (usually in heat or auto mode)
-                    //   CLIMATE_ACTION_HEATING = 3,
-                    //   /// The climate device is idle (monitoring climate but no action needed)
-                    //   CLIMATE_ACTION_IDLE = 4,
-                    //   /// The climate device is drying (either mode DRY or AUTO)
-                    //   CLIMATE_ACTION_DRYING = 5,
-                    //   /// The climate device is in fan only mode (either mode FAN_ONLY or AUTO)
-                    //   CLIMATE_ACTION_FAN = 6,
-                    // };
-
-                    // /// Enum for all modes a climate fan can be in
-                    // enum ClimateFanMode : uint8_t {
-                    //   /// The fan mode is set to On
-                    //   CLIMATE_FAN_ON = 0,
-                    //   /// The fan mode is set to Off
-                    //   CLIMATE_FAN_OFF = 1,
-                    //   /// The fan mode is set to Auto
-                    //   CLIMATE_FAN_AUTO = 2,
-                    //   /// The fan mode is set to Low
-                    //   CLIMATE_FAN_LOW = 3,
-                    //   /// The fan mode is set to Medium
-                    //   CLIMATE_FAN_MEDIUM = 4,
-                    //   /// The fan mode is set to High
-                    //   CLIMATE_FAN_HIGH = 5,
-                    //   /// The fan mode is set to Middle
-                    //   CLIMATE_FAN_MIDDLE = 6,
-                    //   /// The fan mode is set to Focus
-                    //   CLIMATE_FAN_FOCUS = 7,
-                    //   /// The fan mode is set to Diffuse
-                    //   CLIMATE_FAN_DIFFUSE = 8,
-                    // };
-
-                    // /// Enum for all modes a climate swing can be in
-                    // enum ClimateSwingMode : uint8_t {
-                    //   /// The sing mode is set to Off
-                    //   CLIMATE_SWING_OFF = 0,
-                    //   /// The fan mode is set to Both
-                    //   CLIMATE_SWING_BOTH = 1,
-                    //   /// The fan mode is set to Vertical
-                    //   CLIMATE_SWING_VERTICAL = 2,
-                    //   /// The fan mode is set to Horizontal
-                    //   CLIMATE_SWING_HORIZONTAL = 3,
-                    // };
-
-                    // /// Convert the given
-
-
-
-                    // // Need to see this segment inverted
-                    // for (int8_t a_bit = 7; a_bit >= 0; a_bit--) {
-                        // bool bit = byte & (1 << a_bit);
-                        // if (!data.expect_item(BIT_MARK_US, bit ? BIT_ZERO_SPACE_US : BIT_ONE_SPACE_US))
-                            // return false;
-                    // }
-                    // // // Receiving MSB first: reorder bytes
-                    // // loop_read |= byte << ((2 - a_byte) * 8);
-                // }
-                
-                // // Footer Mark
-                // if (!data.expect_mark(BIT_MARK_US))
-                    // return false;
-                
-                // // if (loop == 1) {
-                    // // // Back up state on first loop
-                    // // remote_state = loop_read;
-                    // // if (!data.expect_space(FOOTER_SPACE_US))
-                        // // return false;
-                // // }
-            //}
         }
 
         void MhiClimate::transmit_state() {
@@ -343,7 +226,8 @@ namespace esphome {
             auto temperature = 22;
             auto fanSpeed = MHI_FAN_AUTO;
             auto swingV = MHI_VS_STOP;
-            auto swingH = MHI_HS_RIGHT;  // custom preferred value for this mode, should be MHI_HS_STOP
+            // auto swingH = MHI_HS_RIGHT;  // custom preferred value for this mode, should be MHI_HS_STOP
+            auto swingH = MHI_HS_STOP;
             auto _3DAuto = MHI_3DAUTO_OFF;
             auto silentMode = MHI_SILENT_OFF;
 
@@ -372,7 +256,7 @@ namespace esphome {
                 case climate::CLIMATE_MODE_DRY:
                     operatingMode = MHI_DRY;
                     swingV = MHI_VS_MIDDLE; // custom preferred value for this mode
-                    break;
+                    break;MHI_HS_RIGHT
                 case climate::CLIMATE_MODE_OFF:
                 default:
                     powerMode = MHI_OFF;
@@ -452,7 +336,7 @@ namespace esphome {
             // Silent
             remote_state[15] |= silentMode;
 
-            // There is no checksum, but some bytes are inverted
+            // There is no real checksum, but some bytes are inverted
             remote_state[6] = ~remote_state[5];
             remote_state[8] = ~remote_state[7];
             remote_state[10] = ~remote_state[9];
