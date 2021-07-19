@@ -402,7 +402,7 @@ namespace esphome {
             }
 
             // Fan speed
-            switch (this->fan_mode) {
+            switch (this->fan_mode.value()) {
                 case climate::CLIMATE_FAN_LOW:
                     fanSpeed = MHI_FAN1;
                     break;
