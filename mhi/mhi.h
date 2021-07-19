@@ -12,13 +12,13 @@ namespace esphome {
             public:
                 MhiClimate() : climate_ir::ClimateIR(
                     MHI_TEMP_MIN, MHI_TEMP_MAX, 1.0f, true, true,
-                    std::vector<climate::ClimateFanMode>{
+                    std::set<climate::ClimateFanMode>{
                         climate::CLIMATE_FAN_AUTO, climate::CLIMATE_FAN_LOW,
                         climate::CLIMATE_FAN_MEDIUM, climate::CLIMATE_FAN_HIGH,
                         climate::CLIMATE_FAN_MIDDLE, climate::CLIMATE_FAN_FOCUS,
                         climate::CLIMATE_FAN_DIFFUSE
                     },
-                    std::vector<climate::ClimateSwingMode>{
+                    std::set<climate::ClimateSwingMode>{
                         climate::CLIMATE_SWING_OFF, climate::CLIMATE_SWING_VERTICAL,
                         climate::CLIMATE_SWING_HORIZONTAL, climate::CLIMATE_SWING_BOTH
                     }
