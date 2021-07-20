@@ -256,7 +256,7 @@ namespace esphome {
                 case climate::CLIMATE_MODE_DRY:
                     operatingMode = MHI_DRY;
                     swingV = MHI_VS_MIDDLE; // custom preferred value for this mode
-                    break;MHI_HS_RIGHT
+                    break;
                 case climate::CLIMATE_MODE_OFF:
                 default:
                     powerMode = MHI_OFF;
