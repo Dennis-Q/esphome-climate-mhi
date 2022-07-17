@@ -18,6 +18,9 @@ namespace esphome {
                         climate::CLIMATE_FAN_MIDDLE, climate::CLIMATE_FAN_FOCUS,
                         climate::CLIMATE_FAN_DIFFUSE
                     },
+                    std::set<climate::ClimatePreset>{
+                        climate::CLIMATE_PRESET_ECO
+                    },
                     std::set<climate::ClimateSwingMode>{
                         climate::CLIMATE_SWING_OFF, climate::CLIMATE_SWING_VERTICAL,
                         climate::CLIMATE_SWING_HORIZONTAL, climate::CLIMATE_SWING_BOTH
