@@ -317,7 +317,7 @@ namespace esphome {
             }
             switch (this->preset_mode.value()) {
                 case climate::CLIMATE_PRESET_ECO:
-                    fanSpeed = MHI_ECO;
+                    fanSpeed = MHI_ECONO;
                     break;
             }
 
