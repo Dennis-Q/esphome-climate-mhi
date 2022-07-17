@@ -194,7 +194,9 @@ namespace esphome {
                             this->fan_mode = climate::CLIMATE_FAN_DIFFUSE;
                             break;
                     }
-                case MHI_ECONO: // Not yet supported. Will be added when ESPHome supports it.
+                case MHI_ECONO: //added ECO as Preset
+                    this->fan_mode = climate::CLIMATE_PRESET_ECO;
+                    break;
                 default:
                     this->fan_mode = climate::CLIMATE_FAN_AUTO;
                     break;
@@ -307,6 +309,9 @@ namespace esphome {
                 case climate::CLIMATE_FAN_DIFFUSE:
                     fanSpeed = MHI_FAN_AUTO;
                     swingH = MHI_HS_LEFTRIGHT;
+                    break;
+               case climate::climate::CLIMATE_PRESET_ECO: //Preset mode to set unit to ECO
+                    fanSpeed = MHI_ECO;
                     break;
                 case climate::CLIMATE_FAN_AUTO:
                 default:
