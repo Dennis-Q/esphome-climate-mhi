@@ -311,7 +311,7 @@ namespace esphome {
                     swingH = MHI_HS_LEFTRIGHT;
                     break;
                case climate::CLIMATE_PRESET_ECO: //Preset mode to set unit to ECO
-                    fanSpeed = MHI_ECO;
+                    fanSpeed = MHI_ECONO;
                     break;
                 case climate::CLIMATE_FAN_AUTO:
                 default:
