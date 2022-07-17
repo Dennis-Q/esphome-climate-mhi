@@ -178,8 +178,7 @@ namespace esphome {
                     this->fan_mode = climate::CLIMATE_FAN_MEDIUM;
                     break;
                 case MHI_FAN4:
-                case MHI_HIPOWER: // Not yet supported. Will be added when ESPHome supports it.
-                    this->fan_mode = climate::CLIMATE_FAN_HIGH;
+                    this->fan_mode = climate::CLIMATE_FAN_HIGH; // Moved to Fan4
                     break;
                 case MHI_FAN_AUTO:
                     this->fan_mode = climate::CLIMATE_FAN_AUTO;
@@ -194,9 +193,12 @@ namespace esphome {
                             this->fan_mode = climate::CLIMATE_FAN_DIFFUSE;
                             break;
                     }
-                case MHI_ECONO: //added ECO as Preset
+                case MHI_ECONO: // Set via ECO Preset
                     this->preset = climate::CLIMATE_PRESET_ECO;
                     break;
+                case MHI_HIPOWER: // Set via BOOST Preset
+                    this->preset = climate::CLIMATE_PRESET_BOOST;
+                    break;                    
                 default:
                     this->fan_mode = climate::CLIMATE_FAN_AUTO;
                     break;
@@ -318,11 +320,13 @@ namespace esphome {
             
             switch (this->preset.value()) {
                 case climate::CLIMATE_PRESET_ECO:
-                    fanSpeed = MHI_ECONO;
+                    fanSpeed = MHI_ECONO;  //proebly needs power on and AUTO
                     break;
-                default:
-                    fanSpeed = MHI_FAN_AUTO;
-                    // set to auto. 
+                case CLIMATE_PRESET_BOOST:
+                    fanSpeed = MHI_HIPOWER; //proebly needs power on and AUTO
+                    break;
+                case climate::CLIMATE_PRESET_NONE:
+                default: //set None to default - no action
                     break;
             }
 
