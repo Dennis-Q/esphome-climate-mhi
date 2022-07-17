@@ -315,9 +315,14 @@ namespace esphome {
                     fanSpeed = MHI_FAN_AUTO;
                     break;
             }
+            
             switch (this->preset_mode.value()) {
                 case climate::CLIMATE_PRESET_ECO:
                     fanSpeed = MHI_ECONO;
+                    break;
+                default:
+                    fanSpeed = MHI_FAN_AUTO;
+                    // set to auto. 
                     break;
             }
 
