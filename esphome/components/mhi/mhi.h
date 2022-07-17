@@ -23,7 +23,8 @@ namespace esphome {
                         climate::CLIMATE_SWING_HORIZONTAL, climate::CLIMATE_SWING_BOTH
                     },
                     std::set<climate::ClimatePreset>{
-                        climate::CLIMATE_PRESET_ECO
+                        climate::CLIMATE_PRESET_NONE, climate::CLIMATE_PRESET_ECO,
+                        climate::CLIMATE_PRESET_BOOST 
                     }
                 ) {}
 
