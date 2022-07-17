@@ -195,7 +195,7 @@ namespace esphome {
                             break;
                     }
                 case MHI_ECONO: //added ECO as Preset
-                    this->preset_mode = climate::CLIMATE_PRESET_ECO;
+                    this->preset = climate::CLIMATE_PRESET_ECO;
                     break;
                 default:
                     this->fan_mode = climate::CLIMATE_FAN_AUTO;
@@ -316,7 +316,7 @@ namespace esphome {
                     break;
             }
             
-            switch (this->preset_mode.value()) {
+            switch (this->preset.value()) {
                 case climate::CLIMATE_PRESET_ECO:
                     fanSpeed = MHI_ECONO;
                     break;
