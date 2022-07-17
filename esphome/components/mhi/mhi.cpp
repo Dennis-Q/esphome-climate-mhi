@@ -320,10 +320,10 @@ namespace esphome {
             
             switch (this->preset.value()) {
                 case climate::CLIMATE_PRESET_ECO:
-                    fanSpeed = MHI_ECONO;  //proebly needs power on and AUTO
+                    fanSpeed = MHI_ECONO;  //probebly needs power on and AUTO
                     break;
-                case CLIMATE_PRESET_BOOST:
-                    fanSpeed = MHI_HIPOWER; //proebly needs power on and AUTO
+                case climate::CLIMATE_PRESET_BOOST:
+                    fanSpeed = MHI_HIPOWER; //probebly needs power on and AUTO
                     break;
                 case climate::CLIMATE_PRESET_NONE:
                 default: //set None to default - no action
