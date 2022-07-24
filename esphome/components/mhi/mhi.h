@@ -24,7 +24,7 @@ namespace esphome {
                     },
                     std::set<climate::ClimatePreset>{
                         climate::CLIMATE_PRESET_NONE, climate::CLIMATE_PRESET_ECO,
-                        climate::CLIMATE_PRESET_BOOST 
+                        climate::CLIMATE_PRESET_BOOST, climate::CLIMATE_PRESET_ACTIVITY
                     }
                 ) {}
 
