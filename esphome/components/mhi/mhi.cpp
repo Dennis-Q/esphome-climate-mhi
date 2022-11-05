@@ -146,7 +146,7 @@ namespace esphome {
                         break;
                     case MHI_AUTO:
                         this->mode = climate::CLIMATE_MODE_HEAT_COOL;  //AUTO don´t exist in climate_ir
-                        breakt
+                        break;
                     default:
                         break;
                 }
