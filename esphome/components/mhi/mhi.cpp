@@ -320,7 +320,7 @@ namespace esphome {
                     break;
             }
             
-            switch (this->preset) {
+            switch (this->preset.value()) {
                 case climate::CLIMATE_PRESET_NONE:
                     _3DAuto = MHI_3DAUTO_OFF; // set 3Dmode to off
                     fanSpeed = MHI_FAN_AUTO; // set fan to Auto
