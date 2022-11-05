@@ -313,6 +313,7 @@ namespace esphome {
                     swingH = MHI_HS_LEFTRIGHT;
                     break;
                 case climate::CLIMATE_FAN_AUTO:
+                    fanSpeed = MHI_FAN_AUTO;
                 default:
                     fanSpeed = MHI_FAN_AUTO;
                     break;
