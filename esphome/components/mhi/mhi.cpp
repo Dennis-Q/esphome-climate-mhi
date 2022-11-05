@@ -22,8 +22,7 @@ namespace esphome {
         const uint8_t MHI_FAN2 = 0x0D;
         const uint8_t MHI_FAN3 = 0x0C;
         const uint8_t MHI_FAN4 = 0x0B;
-        const uint8_t MHI_HIPOWER = 0x03; //changed from 0x07 to 0x03
-        const uint8_t MHI_ECONO = 0x1F; // ECO AUTO - echo set second bit from 0 to 1, then fan speed can be 1-4
+        const uint8_t MHI_HIPOWER = 0x04; //changed from 0x07 to 0x04
 
         // Vertical swing
         const uint8_t MHI_VS_SWING = 0xE0;
@@ -52,6 +51,10 @@ namespace esphome {
         // NOT available in Fan or Dry mode
         const uint8_t MHI_SILENT_ON = 0x00;
         const uint8_t MHI_SILENT_OFF = 0x80;
+        
+        // NOT available in Fan mode
+        const uint8_t MHI_ECO_ON = 0x10;
+        const uint8_t MHI_ECO_OFF = 0x00;
 
         // Pulse parameters in usec
         const uint16_t MHI_BIT_MARK = 400;
@@ -193,9 +196,6 @@ namespace esphome {
                             this->fan_mode = climate::CLIMATE_FAN_DIFFUSE;
                             break;
                     }
-                case MHI_ECONO: // Set via ECO Preset
-                    this->preset = climate::CLIMATE_PRESET_ECO;
-                    break;
                 case MHI_HIPOWER: // Set via BOOST Preset
                     this->preset = climate::CLIMATE_PRESET_BOOST;
                     break;                    
@@ -233,6 +233,7 @@ namespace esphome {
             // auto swingH = MHI_HS_RIGHT;  // custom preferred value for this mode, should be MHI_HS_STOP
             auto swingH = MHI_HS_STOP;
             auto _3DAuto = MHI_3DAUTO_OFF;
+            auto ecoMode = MHI_ECO_OFF;
             auto silentMode = MHI_SILENT_OFF;
 
             // ----------------------
@@ -319,21 +320,22 @@ namespace esphome {
                     break;
             }
             
-            switch (this->preset.value()) {
+            switch (this->preset) {
                 case climate::CLIMATE_PRESET_NONE:
-               //     _3DAuto = MHI_3DAUTO_OFF; // set 3Dmode to off
-              //      fanSpeed = MHI_FAN_AUTO; // set fan to Auto
+                    _3DAuto = MHI_3DAUTO_OFF; // set 3Dmode to off
+                    fanSpeed = MHI_FAN_AUTO; // set fan to Auto
                     operatingMode = MHI_AUTO; //set mode to Auto
+                    ecoMode = MHI_ECO_OFF; //set echo mode OFF
                     break;
                 case climate::CLIMATE_PRESET_ECO:
-                    fanSpeed = MHI_ECONO;  // set device to Eco mode
+                    ecoMode = MHI_ECO_ON;  // set device to Eco mode
                     break;
                 case climate::CLIMATE_PRESET_BOOST:
                     fanSpeed = MHI_HIPOWER; // set device to high fan
                     break;
                 case climate::CLIMATE_PRESET_ACTIVITY:
-               //     _3DAuto = MHI_3DAUTO_ON; // set 3dmode to on
-              //      operatingMode = MHI_AUTO;
+                    _3DAuto = MHI_3DAUTO_ON; // set 3dmode to on
+                    operatingMode = MHI_AUTO;
                     break;
                 default: //set None to default - no action
                     break;
@@ -350,7 +352,7 @@ namespace esphome {
             remote_state[7] |= (~((uint8_t)temperature - 17) & 0x0F);
 
             // Fan speed
-            remote_state[9] |= fanSpeed;
+            remote_state[9] |= fanSpeed | ecoMode;
 
             // Vertical air flow + 3D auto
             remote_state[11] |= swingV | _3DAuto;
