@@ -144,9 +144,10 @@ namespace esphome {
                     case MHI_DRY:
                         this->mode = climate::CLIMATE_MODE_DRY;
                         break;
+                    case MHI_AUTO:
+                        this->mode = climate::CLIMATE_MODE_HEAT_COOL;  //AUTO don´t exist in climate_ir
+                        breakt
                     default:
-                        this->mode = climate::CLIMATE_MODE_HEAT_COOL; //AUTO don´t exist in climate_ir
-                        // swingV = MHI_VS_MIDDLE;
                         break;
                 }
             } else {
@@ -320,8 +321,8 @@ namespace esphome {
             
             switch (this->preset.value()) {
                 case climate::CLIMATE_PRESET_NONE:
-                    _3DAuto = MHI_3DAUTO_OFF; // set 3Dmode to off
-                    fanSpeed = MHI_FAN_AUTO; // set fan to Auto
+               //     _3DAuto = MHI_3DAUTO_OFF; // set 3Dmode to off
+              //      fanSpeed = MHI_FAN_AUTO; // set fan to Auto
                     operatingMode = MHI_AUTO; //set mode to Auto
                     break;
                 case climate::CLIMATE_PRESET_ECO:
@@ -331,8 +332,8 @@ namespace esphome {
                     fanSpeed = MHI_HIPOWER; // set device to high fan
                     break;
                 case climate::CLIMATE_PRESET_ACTIVITY:
-                    _3DAuto = MHI_3DAUTO_ON; // set 3dmode to on
-                    operatingMode = MHI_AUTO;
+               //     _3DAuto = MHI_3DAUTO_ON; // set 3dmode to on
+              //      operatingMode = MHI_AUTO;
                     break;
                 default: //set None to default - no action
                     break;
