@@ -145,7 +145,7 @@ namespace esphome {
                         this->mode = climate::CLIMATE_MODE_DRY;
                         break;
                     default:
-                        this->mode = climate::CLIMATE_MODE_AUTO;
+                        this->mode = climate::CLIMATE_MODE_HEAT_COOL; //AUTO don´t exist in climate_ir
                         // swingV = MHI_VS_MIDDLE;
                         break;
                 }
@@ -240,7 +240,7 @@ namespace esphome {
 
             // Power and operating mode
             switch (this->mode) {
-              case climate::CLIMATE_MODE_AUTO:
+              case climate::CLIMATE_MODE_HEAT_COOL:
                     operatingMode = MHI_AUTO;
                     swingV = MHI_VS_MIDDLE; // custom preferred value for this mode
                     break;
@@ -322,6 +322,7 @@ namespace esphome {
                 case climate::CLIMATE_PRESET_NONE:
                     _3DAuto = MHI_3DAUTO_OFF; // set 3Dmode to off
                     fanSpeed = MHI_FAN_AUTO; // set fan to Auto
+                    operatingMode = MHI_AUTO; //set mode to Auto
                     break;
                 case climate::CLIMATE_PRESET_ECO:
                     fanSpeed = MHI_ECONO;  // set device to Eco mode
@@ -331,6 +332,7 @@ namespace esphome {
                     break;
                 case climate::CLIMATE_PRESET_ACTIVITY:
                     _3DAuto = MHI_3DAUTO_ON; // set 3dmode to on
+                    operatingMode = MHI_AUTO;
                     break;
                 default: //set None to default - no action
                     break;
