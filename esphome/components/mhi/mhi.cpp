@@ -22,8 +22,8 @@ namespace esphome {
         const uint8_t MHI_FAN2 = 0x0D;
         const uint8_t MHI_FAN3 = 0x0C;
         const uint8_t MHI_FAN4 = 0x0B;
-        const uint8_t MHI_HIPOWER = 0x07;
-        const uint8_t MHI_ECONO = 0x00;
+        const uint8_t MHI_HIPOWER = 0x03; //changed from 0x07 to 0x03
+        const uint8_t MHI_ECONO = 0x1F; // ECO AUTO - echo set second bit from 0 to 1, then fan speed can be 1-4
 
         // Vertical swing
         const uint8_t MHI_VS_SWING = 0xE0;
