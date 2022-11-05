@@ -145,7 +145,6 @@ namespace esphome {
                         this->mode = climate::CLIMATE_MODE_DRY;
                         break;
                     default:
-                    case MHI_AUTO:
                         this->mode = climate::CLIMATE_MODE_AUTO;
                         // swingV = MHI_VS_MIDDLE;
                         break;
