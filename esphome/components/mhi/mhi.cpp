@@ -323,19 +323,18 @@ namespace esphome {
             switch (this->preset.value()) {
                 case climate::CLIMATE_PRESET_NONE:
                     _3DAuto = MHI_3DAUTO_OFF; // set 3Dmode to off
-                    fanSpeed = MHI_FAN_AUTO; // set fan to Auto
-                    operatingMode = MHI_AUTO; //set mode to Auto
                     ecoMode = MHI_ECO_OFF; //set echo mode OFF
                     break;
                 case climate::CLIMATE_PRESET_ECO:
+                    _3DAuto = MHI_3DAUTO_OFF; // set 3Dmode to off
                     ecoMode = MHI_ECO_ON;  // set device to Eco mode
                     break;
                 case climate::CLIMATE_PRESET_BOOST:
+                    _3DAuto = MHI_3DAUTO_OFF; // set 3Dmode to off
                     fanSpeed = MHI_HIPOWER; // set device to high fan
                     break;
                 case climate::CLIMATE_PRESET_ACTIVITY:
                     _3DAuto = MHI_3DAUTO_ON; // set 3dmode to on
-                    operatingMode = MHI_AUTO;
                     break;
                 default: //set None to default - no action
                     break;
