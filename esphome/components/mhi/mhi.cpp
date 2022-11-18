@@ -179,14 +179,6 @@ namespace esphome {
             switch (fanSpeed) {
                 case MHI_FAN1: 
                     this->fan_mode = climate::CLIMATE_FAN_LOW;
-                    switch (ecoMode) {
-                        case MHI_ECO_ON;
-                            this->preset = climate::CLIMATE_PRESET_ECO;
-                            break;
-                        case MHI_ECO_OFF;
-                            this->preset = climate::CLIMATE_PRESET_NONE;
-                            break;
-                    }
                     break;
                 case MHI_FAN2: // Only to support remote feedback
                 case MHI_FAN3:
