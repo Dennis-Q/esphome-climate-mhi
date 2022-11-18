@@ -197,7 +197,7 @@ namespace esphome {
                             break;
                     }
                 case MHI_HIPOWER: // Set via BOOST Preset
-                    this->preset = climate::CLIMATE_PRESET_BOOST;
+                 //   this->preset = climate::CLIMATE_PRESET_BOOST; // Problem to get feedback to trigger preset.
                     break;                    
                 default:
                     this->fan_mode = climate::CLIMATE_FAN_AUTO;
