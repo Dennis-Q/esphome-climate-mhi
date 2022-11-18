@@ -199,12 +199,12 @@ namespace esphome {
                         case MHI_HS_LEFTRIGHT:
                             this->fan_mode = climate::CLIMATE_FAN_DIFFUSE;
                             break;
-                        case MHI_HS_SWING;
-                        case MHI_HS_LEFT;
-                        case MHI_HS_MLEFT;
-                        case MHI_HS_MRIGHT;
-                        case MHI_HS_RIGHT;
-                        case MHI_HS_STOP;
+                        case MHI_HS_SWING:
+                        case MHI_HS_LEFT:
+                        case MHI_HS_MLEFT:
+                        case MHI_HS_MRIGHT:
+                        case MHI_HS_RIGHT:
+                        case MHI_HS_STOP:
                     }
                 case MHI_HIPOWER: // Set via BOOST Preset
                  //   this->preset = climate::CLIMATE_PRESET_BOOST; // Problem to get feedback to trigger preset.
