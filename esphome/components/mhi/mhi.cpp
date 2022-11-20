@@ -313,20 +313,21 @@ namespace esphome {
                 case climate::CLIMATE_FAN_HIGH:
                     fanSpeed = MHI_FAN4;
                     break;
-                case climate::CLIMATE_FAN_MIDDLE:
-                    fanSpeed = MHI_FAN_AUTO;
-                    swingH = MHI_HS_MIDDLE;
-                    break;
-                case climate::CLIMATE_FAN_FOCUS:
-                    fanSpeed = MHI_FAN_AUTO;
-                    swingH = MHI_HS_RIGHTLEFT;
-                    break;
-                case climate::CLIMATE_FAN_DIFFUSE:
-                    fanSpeed = MHI_FAN_AUTO;
-                    swingH = MHI_HS_LEFTRIGHT;
-                    break;
+           //     case climate::CLIMATE_FAN_MIDDLE:
+           //         fanSpeed = MHI_FAN_AUTO;
+           //         swingH = MHI_HS_MIDDLE;
+           //         break;
+           //     case climate::CLIMATE_FAN_FOCUS:
+           //         fanSpeed = MHI_FAN_AUTO;
+           //         swingH = MHI_HS_RIGHTLEFT;
+           //         break;
+           //     case climate::CLIMATE_FAN_DIFFUSE:
+           //         fanSpeed = MHI_FAN_AUTO;
+           //         swingH = MHI_HS_LEFTRIGHT;
+           //         break;
                 case climate::CLIMATE_FAN_AUTO:
                     fanSpeed = MHI_FAN_AUTO;
+                    break;
                 default:
                     fanSpeed = MHI_FAN_AUTO;
                     break;
