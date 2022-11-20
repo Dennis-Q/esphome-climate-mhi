@@ -343,6 +343,7 @@ namespace esphome {
                     _3DAuto = MHI_3DAUTO_OFF; // set 3Dmode to off
                     ecoMode = MHI_ECO_ON;  // set device to Eco mode
                     nightMode = MHI_NIGHT_OFF; //set night off
+                    fanSpeed = MHI_FAN2; //set fan speed
                     break;
                 case climate::CLIMATE_PRESET_BOOST:
                     _3DAuto = MHI_3DAUTO_OFF; // set 3Dmode to off
