@@ -189,27 +189,27 @@ namespace esphome {
                     break;
                 case MHI_FAN_AUTO:
                     this->fan_mode = climate::CLIMATE_FAN_AUTO;
-                    switch (swingH) {     
-                        case MHI_HS_SWING:
-                        case MHI_HS_LEFT:
-                        case MHI_HS_MLEFT:
-                        case MHI_HS_MRIGHT:
-                        case MHI_HS_RIGHT:
-                        case MHI_HS_STOP:
-                        case MHI_HS_MIDDLE:
-                            this->fan_mode = climate::CLIMATE_FAN_MIDDLE;
-                            break;
-                        case MHI_HS_RIGHTLEFT:
-                            this->fan_mode = climate::CLIMATE_FAN_FOCUS;
-                            break;
-                        case MHI_HS_LEFTRIGHT:
-                            this->fan_mode = climate::CLIMATE_FAN_DIFFUSE;
-                            break;  
-                    }
+             //       switch (swingH) {     
+             //           case MHI_HS_SWING:
+             //           case MHI_HS_LEFT:
+             //           case MHI_HS_MLEFT:
+             //           case MHI_HS_MRIGHT:
+             //           case MHI_HS_RIGHT:
+             //           case MHI_HS_STOP:
+             //           case MHI_HS_MIDDLE:
+             //               this->fan_mode = climate::CLIMATE_FAN_MIDDLE;
+             //               break;
+             //           case MHI_HS_RIGHTLEFT:
+             //               this->fan_mode = climate::CLIMATE_FAN_FOCUS;
+             //               break;
+             //           case MHI_HS_LEFTRIGHT:
+             //               this->fan_mode = climate::CLIMATE_FAN_DIFFUSE;
+             //               break;  
+             //       }
                     break;
                 case MHI_HIPOWER: // Set via BOOST Preset
-                 //   this->preset = climate::CLIMATE_PRESET_BOOST; // Problem to get feedback to trigger preset.
-                 //   break;                    
+                    this->preset = climate::CLIMATE_PRESET_BOOST; // Problem to get feedback to trigger preset.
+                    break;                    
                 default:
                     this->fan_mode = climate::CLIMATE_FAN_AUTO;
                     break;
