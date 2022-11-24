@@ -52,7 +52,7 @@ namespace esphome {
         const uint8_t MHI_SILENT_ON = 0x00;
         const uint8_t MHI_SILENT_OFF = 0x80;
         
-        // Night setback
+        // Night setback 
         const uint8_t MHI_NIGHT_ON = 0x00;
         const uint8_t MHI_NIGHT_OFF = 0x40;
         
@@ -226,7 +226,7 @@ namespace esphome {
                 0x52, 0xAE, 0xC3, 0x1A,
                 0xE5, 0x90, 0x00, 0xF0,
                 0x00, 0xF0, 0x00, 0x0D,
-                0x00, 0x10, 0x00, 0xFF,
+                0x00, 0x10, 0x00, 0xBF,
                 0x00, 0x7F, 0x00
             };
 
