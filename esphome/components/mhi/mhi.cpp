@@ -56,9 +56,9 @@ namespace esphome {
         const uint8_t MHI_NIGHT_ON = 0x00;
         const uint8_t MHI_NIGHT_OFF = 0x40;
         
-        // NOT available in Fan mode
-        const uint8_t MHI_ECO_ON = 0x10;
-        const uint8_t MHI_ECO_OFF = 0x00;
+        // "inverted" to get ECO working.
+        const uint8_t MHI_ECO_ON = 0x00;
+        const uint8_t MHI_ECO_OFF = 0x10;
 
         // Pulse parameters in usec
         const uint16_t MHI_BIT_MARK = 400;
@@ -225,7 +225,7 @@ namespace esphome {
             uint8_t remote_state[] = {
                 0x52, 0xAE, 0xC3, 0x1A,
                 0xE5, 0x90, 0x00, 0xF0,
-                0x00, 0xF0, 0x00, 0x0D,
+                0x00, 0xE0, 0x00, 0x0D,
                 0x00, 0x10, 0x00, 0xBF,
                 0x00, 0x7F, 0x00
             };
