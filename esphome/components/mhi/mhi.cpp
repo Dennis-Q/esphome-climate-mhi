@@ -49,14 +49,14 @@ namespace esphome {
         const uint8_t MHI_3DAUTO_OFF = 0x12;
 
         // NOT available in Fan or Dry mode
-        const uint8_t MHI_SILENT_ON = 0x00;
-        const uint8_t MHI_SILENT_OFF = 0x80;
+        const uint8_t MHI_SILENT_ON = 0x80;
+        const uint8_t MHI_SILENT_OFF = 0x00;
         
         // Night setback 
-        const uint8_t MHI_NIGHT_ON = 0x00;
-        const uint8_t MHI_NIGHT_OFF = 0x40;
+        const uint8_t MHI_NIGHT_ON = 0x40;
+        const uint8_t MHI_NIGHT_OFF = 0x00;
         
-        // "inverted" to get ECO working.
+        // Eco
         const uint8_t MHI_ECO_ON = 0x00;
         const uint8_t MHI_ECO_OFF = 0x10;
 
@@ -226,7 +226,7 @@ namespace esphome {
                 0x52, 0xAE, 0xC3, 0x1A,
                 0xE5, 0x90, 0x00, 0xF0,
                 0x00, 0xE0, 0x00, 0x0D,
-                0x00, 0x10, 0x00, 0xBF,
+                0x00, 0x10, 0x00, 0x3F,
                 0x00, 0x7F, 0x00
             };
 
