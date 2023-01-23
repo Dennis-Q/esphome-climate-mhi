@@ -67,14 +67,14 @@ namespace esphome {
             // The protocol sends the data twice, read here
             // uint32_t loop_read;
             
-            uint8_t bytes[19] = {};
+            uint8_t bytes[11] = {};
 
             //for (uint16_t loop = 1; loop <= 2; loop++) {
             if (!data.expect_item(MHI_HEADER_MARK, MHI_HEADER_SPACE))
                 return false;
             
             // loop_read = 0;
-            for (uint8_t a_byte = 0; a_byte < 19; a_byte++) {
+            for (uint8_t a_byte = 0; a_byte < 11; a_byte++) {
                 uint8_t byte = 0;
                 for (int8_t a_bit = 0; a_bit < 8; a_bit++) {
                     if (data.expect_item(MHI_BIT_MARK, MHI_ONE_SPACE))
