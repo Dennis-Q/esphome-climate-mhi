@@ -113,8 +113,8 @@ namespace esphome {
             auto operationMode = bytes[9] & 0x07;
             auto temperature = (~bytes[9] & 0x0F) + 17; 
             auto fanSpeed = bytes[7] & 0x0F;
-            auto swingV = bytes[5] & 0xE0; // ignore the bit for the 3D auto
-            auto swingH = bytes[5] & 0x0F;
+            auto swingV = bytes[7] & 0x18; // ignore the bit for the 3D auto
+            auto swingH = bytes[5] & 0x02;
 
             ESP_LOGD(TAG,
                 "Resulting numbers: powerMode=0x%02X operationMode=0x%02X temperature=%d fanSpeed=0x%02X swingV=0x%02X swingH=0x%02X",
