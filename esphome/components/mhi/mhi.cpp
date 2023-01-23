@@ -111,7 +111,7 @@ namespace esphome {
 
             auto powerMode = bytes[9] & 0x08;
             auto operationMode = bytes[9] & 0x07;
-            auto temperature = (~bytes[9] & 0x0F) + 17; 
+            auto temperature = (~bytes[9] & 0xF0) + 17; 
             auto fanSpeed = bytes[7] & 0xE0;
             auto swingV = bytes[7] & 0x0A; // ignore the bit for the 3D auto
             auto swingH = bytes[5] & 0x4C;
@@ -315,7 +315,7 @@ namespace esphome {
             remote_state[7] |= fanSpeed | (swingV & 0b00011000);
 
             // Fan speed
-            remote_state[9] |= operatingMode | powerMode | (~((uint8_t)temperature - 17) & 0x0F);
+            remote_state[9] |= operatingMode | powerMode | (~((uint8_t)temperature - 17) & 0xF0);
 
             // There is no real checksum, but some bytes are inverted
             remote_state[6] = ~remote_state[5];
