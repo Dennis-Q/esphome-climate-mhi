@@ -111,7 +111,7 @@ namespace esphome {
 
             auto powerMode = bytes[9] & 0x08;
             auto operationMode = bytes[9] & 0x07;
-            auto temperature = (~bytes[9] & 0xF0) + 17; 
+            auto temperature = (~bytes[9] & 0x00) + 17;
             auto fanSpeed = bytes[7] & 0xE0;
             auto swingV = bytes[7] & 0x0A; // ignore the bit for the 3D auto
             auto swingH = bytes[5] & 0x4C;
