@@ -113,7 +113,7 @@ namespace esphome {
             auto operationMode = bytes[9] & 0x07;
             auto temperature = ((~bytes[9] & 0xF0) >> 4) + 17;
             auto fanSpeed = bytes[7] & 0xE0;
-            auto swingV = bytes[7] & 0x0A; // ignore the bit for the 3D auto
+            auto swingV = (bytes[7] & 0b00011000) & 0x0A; // ignore the bit for the 3D auto
             auto swingH = bytes[5] & 0x4C;
 
             ESP_LOGD(TAG,
