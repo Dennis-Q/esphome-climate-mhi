@@ -309,10 +309,10 @@ namespace esphome {
             // ----------------------
 
             // Power state + operating mode
-            remote_state[5] |= swingH | (swingV & 0b00000010) | cleanMode;
+            remote_state[5] |= swingH | swingV | cleanMode;
 
             // Temperature
-            remote_state[7] |= fanSpeed | (swingV & 0b00011000);
+            remote_state[7] |= fanSpeed | swingV;
 
             // Fan speed
             remote_state[9] |= operatingMode | powerMode | ((~(((uint8_t)temperature - 17) << 4)) & 0xF0);
