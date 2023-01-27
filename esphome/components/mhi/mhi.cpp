@@ -113,8 +113,8 @@ namespace esphome {
             auto operationMode = bytes[9] & 0x07;
             auto temperature = ((~bytes[9] & 0xF0) >> 4) + 17;
             auto fanSpeed = bytes[7] & 0xE0;
-            auto swingV = bytes[5] & 0x0A;
-            auto swingH = bytes[5] & 0x4C;
+            auto swingV = ((bytes[5] & 0b00000010) | (bytes[7] & 0b00011000));
+            auto swingH = (bytes[5] & 0b11001100);
 
             ESP_LOGD(TAG,
                 "Resulting numbers: powerMode=0x%02X operationMode=0x%02X temperature=%d fanSpeed=0x%02X swingV=0x%02X swingH=0x%02X",
@@ -309,10 +309,10 @@ namespace esphome {
             // ----------------------
 
             // Power state + operating mode
-            remote_state[5] |= swingH | swingV | cleanMode;
+            remote_state[5] |= swingH | (swingV & 0b00000010) | cleanMode;
 
             // Temperature
-            remote_state[7] |= fanSpeed | swingV;
+            remote_state[7] |= fanSpeed | (swingV & 0b00011000);
 
             // Fan speed
             remote_state[9] |= operatingMode | powerMode | ((~(((uint8_t)temperature - 17) << 4)) & 0xF0);
